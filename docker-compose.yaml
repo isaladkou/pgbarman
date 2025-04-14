@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: sf-postrges
+    build:
+      dockerfile: ./postgres/Dockerfile
+    container_name: pg
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+      - "2222:22"
+    networks:
+      - barman-test
+
+  barman:
+    image: sf-barman
+    build:
+      dockerfile: ./barman/Dockerfile
+    container_name: barman
+    restart: always
+    depends_on:
+      - postgres
+    networks:
+      - barman-test
+
+networks:
+  barman-test:
+
+
