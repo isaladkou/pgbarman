@@ -2,7 +2,7 @@
 FROM debian:latest
 
 # Обновляем пакеты и устанавливаем необходимые зависимости
-RUN apt-get update \ 
+RUN apt-get update \
     && apt-get install -y \
     barman \
     # После установки рекомендуется очистка кеша, чтобы не раздувать размер контейнера
